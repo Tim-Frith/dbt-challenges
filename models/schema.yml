@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-   - name: raw
-     schema: gz_raw_data
-     tables:
+  - name: raw
+    schema: gz_raw_data
+    tables:
       - name: product
         identifier: raw_product
         columns:
@@ -19,7 +19,7 @@ sources:
       - name: ship
         identifier: raw_ship
         columns:
-        - name: orders_id
-          tests:
-            - unique
-            - not_null
+          - name: orders_id
+            tests:
+              - unique
+              - not_null
