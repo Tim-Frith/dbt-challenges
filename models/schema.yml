@@ -23,7 +23,14 @@ sources:
             tests:
               - unique
               - not_null
-      - name:
+      - name: adwords
+        identifier: raw_gz_adwords
+      - name: bing
+        identifier: raw_gz_bing
+      - name: criteo
+        identifier: raw_gz_criteo
+      - name: facebook
+        identifier: raw_gz_facebook
 
 models:
    - name: int_sales_margin
@@ -41,7 +48,7 @@ models:
          description: Margin = Revenue - Purchase_cost
          tests:
            - not_null
-       - name: Purchase_cost
+       - name: purchase_cost
          description: Purchase_cost = Quantity * Purchase_price
          tests:
            - not_null
@@ -159,3 +166,29 @@ models:
          description: the cost of preparing the parcel in the distribution centre/warehouse
        - name: ship_cost
          description: shipping cost paid by Greenweez to the carrier/logistics provider
+   - name: int_campaigns
+     description: data from all campaigns
+     columns:
+       - name: paid_source
+         tests:
+           - not_null
+       - name: campaign_name
+         tests:
+           - not_null
+     tests:
+       - unique:
+           column_name: "(campaign_key || '-' || date_date)"
+   - name: int_campaigns_day
+     description: Sum of campaigns data by day
+
+   - name: finance_campaigns_day
+     description: global kpi
+     columns:
+       - name: ads_margin
+         description: operational_margin - ads_cost
+         tests:
+           - not_null
+       - name: average_basket
+         description: average basket cost for each day
+         tests:
+           - not_null
