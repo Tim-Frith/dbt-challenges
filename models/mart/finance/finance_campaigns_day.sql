@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 SELECT 
     date_date
     ,operational_margin - ads_cost AS ads_margin
